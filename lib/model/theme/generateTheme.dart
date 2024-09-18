@@ -1,5 +1,5 @@
 import '../../datamodel/theme.dart';
 
 abstract class GenerateTheme {
-  Theme generalTheme();
+  Future<Theme> generalTheme(); // Future<Theme> の戻り値
 }

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'model/theme/generateThemeImpl.dart';
 
-void main() {
+void main() async {
+  // .envファイルを読み込む
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -30,14 +34,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,23 +42,30 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: FutureBuilder(
+          future: GenerateThemeImpl().generalTheme(), // GenerateThemeImplを呼び出す
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator(); // データ取得中のインジケータ
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}'); // エラーメッセージ表示
+            } else {
+              return Text(
+                'Generated Theme: ${snapshot.data?.title ?? "No theme"}', // 生成されたテーマを表示
+                style: Theme.of(context).textTheme.headlineMedium,
+              );
+            }
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        onPressed: () {
+          setState(() {
+            // 必要に応じて追加機能を実装
+          });
+        },
+        tooltip: 'Refresh',
+        child: const Icon(Icons.refresh),
       ),
     );
   }
