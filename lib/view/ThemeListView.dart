@@ -20,8 +20,16 @@ class ThemeListView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start, // タイトルを左揃えに
           children: <Widget>[
+            const Text(
+              'Select a Theme',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+            ), // タイトルを追加
+            const SizedBox(height: 16), // タイトルとリストの間にスペースを追加
             Expanded(
               child: ListView.builder(
                 itemCount: 100,
