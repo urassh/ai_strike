@@ -4,7 +4,6 @@ import 'package:ai_strike/view/components/ThemeCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../components/GradationCard.dart';
 import '../components/GradationContainer.dart';
 import '../util/AppStyle.dart';
 
