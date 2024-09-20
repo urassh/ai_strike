@@ -1,4 +1,4 @@
-import 'package:ai_strike/view/ThemeListView.dart';
+import 'package:ai_strike/view/theme_list/ThemeListView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'model/theme/generateThemeImpl.dart';
