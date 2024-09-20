@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../components/GradationCard.dart';
+import '../components/GradationContainer.dart';
 import '../util/AppStyle.dart';
 
 class DrawView extends StatelessWidget {
@@ -47,22 +48,7 @@ class DrawView extends StatelessWidget {
                 style: AppStyle.title,
               ),
 
-              Container(
-                height: 400,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  gradient: AppStyle.gradation,
-                ),
-
-                child: Container(
-                  margin: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-              ),
+              const GradationContainer(height: 400),
 
               const SizedBox(height: 50),
             ],
