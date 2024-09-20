@@ -40,14 +40,15 @@ class ThemeListView extends ConsumerWidget {
                 fontWeight: FontWeight.bold,
                   shadows: [
                     BoxShadow(
-                      color: Colors.black26,
-                      offset: Offset(2, 2),
-                      blurRadius: 5.0,
-                      spreadRadius: 0.5,
+                      color: Colors.black12,
+                      offset: Offset(0, 4),
+                      blurRadius: 4.0,
+                      spreadRadius: 1.0,
                     ),
                   ]
               ),
             ),
+            const Text("You can challenge right swipe!!", style: TextStyle(fontSize: 16, color: Colors.grey)),
             const SizedBox(height: 16),
             Expanded(
               child: ListView.builder(
