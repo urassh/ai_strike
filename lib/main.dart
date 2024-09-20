@@ -3,7 +3,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'model/theme/generateThemeImpl.dart';
 
 void main() async {
-  // .envファイルを読み込む
   await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
