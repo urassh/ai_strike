@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../answer/StartView.dart';
+import '../util/AppTextStyle.dart';
 import 'ListViewModel.dart';
 import 'ThemeListCell.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,22 +35,11 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
             : Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text(
+            Text(
               'Select a Theme',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                  shadows: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      offset: Offset(0, 4),
-                      blurRadius: 4.0,
-                      spreadRadius: 1.0,
-                    ),
-                  ]
-              ),
+              style: AppTextStyle.title,
             ),
-            const Text("You can challenge right swipe!!", style: TextStyle(fontSize: 16, color: Colors.grey)),
+            Text("You can challenge right swipe!!", style: AppTextStyle.subTitle),
             const SizedBox(height: 16),
             Expanded(
               child: ListView.builder(

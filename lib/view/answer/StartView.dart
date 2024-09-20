@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../util/AppTextStyle.dart';
+
 class StartView extends StatelessWidget {
   const StartView({Key? key}) : super(key: key);
 
@@ -18,29 +20,18 @@ class StartView extends StatelessWidget {
           ),
         ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
               'Theme',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                shadows: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    offset: Offset(0, 4),
-                    blurRadius: 4.0,
-                    spreadRadius: 1.0,
-                  ),
-                ]
-              ),
+              style: AppTextStyle.title,
             ),
-            Text("You can challenge right swipe!!", style: TextStyle(fontSize: 16, color: Colors.grey)),
-            SizedBox(height: 16),
-            Text("StartView"),
+            Text("You can challenge right swipe!!", style: AppTextStyle.subTitle),
+            const SizedBox(height: 16),
+            const Text("StartView"),
           ],
         ),
       ),
