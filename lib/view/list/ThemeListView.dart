@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../answer/StartView.dart';
 import 'ListViewModel.dart';
 import 'ThemeListCell.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -81,8 +82,11 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
   }
 
   @override
-  void onRightSwipe() {
-    print("Right!");
+  void onRightSwipe(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const StartView()),
+    );
   }
 
 }

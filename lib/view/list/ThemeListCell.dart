@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 abstract class ThemeListCellDelegate {
   void onLeftSwipe();
-  void onRightSwipe();
+  void onRightSwipe(BuildContext context);
 }
 
 class ThemeListCell extends StatefulWidget {
@@ -38,7 +38,7 @@ class _ThemeListCellState extends State<ThemeListCell> {
       direction: DismissDirection.horizontal,
       confirmDismiss: (direction) async {
         if (direction == DismissDirection.startToEnd) {
-          widget.delegate.onRightSwipe();
+          widget.delegate.onRightSwipe(context);
         } else if (direction == DismissDirection.endToStart) {
           widget.delegate.onLeftSwipe();
         }
