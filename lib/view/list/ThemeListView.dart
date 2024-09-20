@@ -3,7 +3,7 @@ import 'ListViewModel.dart';
 import 'ThemeListCell.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ThemeListView extends ConsumerWidget {
+class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
   const ThemeListView({super.key});
 
   @override
@@ -56,7 +56,7 @@ class ThemeListView extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   return Column(
                     children: <Widget>[
-                      ThemeListCell(theme: themeList[index]),
+                      ThemeListCell(theme: themeList[index], delegate: this),
                       const SizedBox(height: 8),
                     ],
                   );
@@ -74,4 +74,15 @@ class ThemeListView extends ConsumerWidget {
       ),
     );
   }
+
+  @override
+  void onLeftSwipe() {
+    print("Left!");
+  }
+
+  @override
+  void onRightSwipe() {
+    print("Right!");
+  }
+
 }
