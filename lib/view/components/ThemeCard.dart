@@ -1,3 +1,4 @@
+import 'package:ai_strike/datamodel/CardDelegate.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../datamodel/GameTheme.dart';
@@ -5,9 +6,9 @@ import '../util/AppStyle.dart';
 import 'GradationCard.dart';
 
 class ThemeCard extends StatelessWidget {
-  final GameTheme theme;
+  final CardDelegate delegate;
 
-  const ThemeCard({super.key, required this.theme});
+  const ThemeCard({super.key, required this.delegate});
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +20,12 @@ class ThemeCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              theme.title,
+              delegate.title,
               style: AppStyle.title,
             ),
             const SizedBox(height: 4),
             Text(
-              theme.contents,
+              delegate.contents,
               style: AppStyle.body,
             ),
           ],

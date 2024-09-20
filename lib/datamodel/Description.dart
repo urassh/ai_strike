@@ -1,3 +1,4 @@
+import 'package:ai_strike/datamodel/CardDelegate.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 
@@ -5,7 +6,7 @@ part 'generated/Description.freezed.dart';
 part 'generated/Description.g.dart';
 
 @freezed
-class Description with _$Description {
+class Description with _$Description implements CardDelegate{
   const Description._();
 
   const factory Description({

@@ -36,7 +36,7 @@ class DrawView extends StatelessWidget {
               Center(
                 child: FractionallySizedBox(
                   widthFactor: 1.0,
-                  child: ThemeCard(theme: theme)
+                  child: ThemeCard(delegate: theme)
                 ),
               ),
 

@@ -1,4 +1,6 @@
+import 'package:ai_strike/datamodel/Description.dart';
 import 'package:ai_strike/datamodel/GameTheme.dart';
+import 'package:ai_strike/view/answer/ExplainView.dart';
 import 'package:ai_strike/view/components/AppScaffold.dart';
 import 'package:ai_strike/view/components/GradationCard.dart';
 import 'package:ai_strike/view/components/ThemeCard.dart';
@@ -33,7 +35,7 @@ class StartView extends StatelessWidget {
               const SizedBox(height: 8),
               Center(
                 child: FractionallySizedBox(
-                    widthFactor: 1.0, child: ThemeCard(theme: theme)),
+                    widthFactor: 1.0, child: ThemeCard(delegate: theme)),
               ),
               const SizedBox(height: 120),
               Center(
@@ -43,7 +45,7 @@ class StartView extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => DrawView(theme: theme)),
+                          builder: (context) => ExplainView(description: Description(title: theme.title, contents: theme.contents))),
                     );
                   },
                 ),
