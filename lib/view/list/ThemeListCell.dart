@@ -1,4 +1,5 @@
 import 'package:ai_strike/datamodel/GameTheme.dart';
+import 'package:ai_strike/view/components/GradationCard.dart';
 import 'package:ai_strike/view/util/DateFormatter.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,6 @@ class ThemeListCell extends StatefulWidget {
   @override
   _ThemeListCellState createState() => _ThemeListCellState();
 }
-
 
 class _ThemeListCellState extends State<ThemeListCell> {
   final TextStyle _titleStyle = const TextStyle(
@@ -44,31 +44,7 @@ class _ThemeListCellState extends State<ThemeListCell> {
         }
         return false;
       },
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [
-              Color(0xFFA9C9FF),
-              Color(0xFFFFBBEC),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-          borderRadius: BorderRadius.circular(12.0),
-          border: Border.all(
-            color: Colors.white.withAlpha(100),
-            width: 4.0,
-          ),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black26,
-              offset: Offset(2, 2),
-              blurRadius: 5.0,
-              spreadRadius: 0.5,
-            ),
-          ],
-        ),
+      child: GradationCard(
         child: ListTile(
           title: Text(
             widget.theme.title,
