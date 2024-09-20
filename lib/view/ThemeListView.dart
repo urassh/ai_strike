@@ -63,7 +63,7 @@ class _ThemeListCell extends StatelessWidget {
   final TextStyle _titleStyle = const TextStyle(
     color: Colors.black87,
     fontSize: 18,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w900,
   );
 
   @override
@@ -88,7 +88,7 @@ class _ThemeListCell extends StatelessWidget {
       child: ListTile(
         leading: const Icon(Icons.label, color: Colors.white), // Change icon color if needed
         title: Text(
-            'Theme Title',
+            'サンプルのお題',
             style: _titleStyle,
         ),
         subtitle: const Text(
