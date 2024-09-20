@@ -30,17 +30,43 @@ class ThemeListCell extends StatelessWidget {
           color: Colors.white.withAlpha(100),
           width: 4.0,
         ),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            offset: Offset(2, 2),
+            blurRadius: 5.0,
+            spreadRadius: 0.5,
+          ),
+        ]
       ),
+
       child: ListTile(
         title: Text(
           theme.title,
           style: _titleStyle,
         ),
-        subtitle: const Text(
-          '2022/12/31 23:59',
-          style: TextStyle(color: Colors.grey, fontSize: 12),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              theme.date.toString(),
+              style: const TextStyle(
+                color: Colors.black54,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              theme.contents,
+              style: const TextStyle(
+                color: Colors.black54,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
         ),
-        leading: Text(theme.contents),
       ),
     );
   }

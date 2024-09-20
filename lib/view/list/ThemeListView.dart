@@ -38,6 +38,14 @@ class ThemeListView extends ConsumerWidget {
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
+                  shadows: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(2, 2),
+                      blurRadius: 5.0,
+                      spreadRadius: 0.5,
+                    ),
+                  ]
               ),
             ),
             const SizedBox(height: 16),
