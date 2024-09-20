@@ -1,6 +1,7 @@
 import 'package:ai_strike/datamodel/GameTheme.dart';
 import 'package:ai_strike/view/components/AppScaffold.dart';
 import 'package:ai_strike/view/components/GradationCard.dart';
+import 'package:ai_strike/view/components/ThemeCard.dart';
 import 'package:flutter/material.dart';
 
 import '../util/AppStyle.dart';
@@ -33,26 +34,7 @@ class StartView extends StatelessWidget {
               Center(
                 child: FractionallySizedBox(
                   widthFactor: 1.0,
-                  child: GradationCard(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Text(
-                            theme.title,
-                            style: AppStyle.title,
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            theme.contents,
-                            style: AppStyle.body,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  child: ThemeCard(theme: theme)
                 ),
               ),
               const SizedBox(height: 120),
