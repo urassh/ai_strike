@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppTextStyle {
+class AppStyle {
   static TextStyle get title {
     return const TextStyle(
         fontSize: 28,
@@ -27,6 +27,17 @@ class AppTextStyle {
   static TextStyle get body {
     return const TextStyle(
       fontSize: 14,
+    );
+  }
+
+  static LinearGradient get gradation {
+    return const LinearGradient(
+      colors: [
+        Color(0xFFA9C9FF),
+        Color(0xFFFFBBEC),
+      ],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
     );
   }
 }

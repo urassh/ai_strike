@@ -4,8 +4,8 @@ import 'package:ai_strike/view/util/DateFormatter.dart';
 import 'package:flutter/material.dart';
 
 abstract class ThemeListCellDelegate {
-  void onLeftSwipe();
-  void onRightSwipe(BuildContext context);
+  void onLeftSwipe(BuildContext context, GameTheme theme);
+  void onRightSwipe(BuildContext context, GameTheme theme);
 }
 
 class ThemeListCell extends StatefulWidget {
@@ -38,9 +38,9 @@ class _ThemeListCellState extends State<ThemeListCell> {
       direction: DismissDirection.horizontal,
       confirmDismiss: (direction) async {
         if (direction == DismissDirection.startToEnd) {
-          widget.delegate.onRightSwipe(context);
+          widget.delegate.onRightSwipe(context, widget.theme);
         } else if (direction == DismissDirection.endToStart) {
-          widget.delegate.onLeftSwipe();
+          widget.delegate.onLeftSwipe(context, widget.theme);
         }
         return false;
       },
