@@ -1,7 +1,8 @@
+import 'package:ai_strike/datamodel/GameTheme.dart';
 import 'package:flutter/material.dart';
 
 class ThemeListCell extends StatelessWidget {
-  final Theme theme;
+  final GameTheme theme;
 
   const ThemeListCell({super.key, required this.theme});
 
@@ -31,15 +32,15 @@ class ThemeListCell extends StatelessWidget {
         ),
       ),
       child: ListTile(
-        leading: const Icon(Icons.label, color: Colors.white), // Change icon color if needed
         title: Text(
-          'サンプルのお題',
+          theme.title,
           style: _titleStyle,
         ),
         subtitle: const Text(
           '2022/12/31 23:59',
           style: TextStyle(color: Colors.grey, fontSize: 12),
         ),
+        leading: Text(theme.contents),
       ),
     );
   }

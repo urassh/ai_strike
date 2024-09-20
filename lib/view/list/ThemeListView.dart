@@ -1,27 +1,37 @@
 import 'package:flutter/material.dart';
+import 'ListViewModel.dart';
 import 'ThemeListCell.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ThemeListView extends StatelessWidget {
+class ThemeListView extends ConsumerWidget {
   const ThemeListView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeList = ref.watch(themeListProvider);
+    final themeListViewModel = ref.read(themeListProvider.notifier);
+
+    Future.delayed(Duration.zero, () {
+      themeListViewModel.fetchThemes();
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("AI Strike!!", style: TextStyle(fontWeight: FontWeight.w600)),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(1.0),
           child: Container(
-            color: Colors.grey.withOpacity(0.5), // 薄いボーダーの色
-            height: 1.0, // ボーダーの高さ
+            color: Colors.grey.withOpacity(0.5),
+            height: 1.0,
           ),
         ),
       ),
-
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // タイトルを左揃えに
+        child: themeList.isEmpty
+            ? const Center(child: CircularProgressIndicator())
+            : Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const Text(
               'Select a Theme',
@@ -29,30 +39,29 @@ class ThemeListView extends StatelessWidget {
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
-            ), // タイトルを追加
-            const SizedBox(height: 16), // タイトルとリストの間にスペースを追加
+            ),
+            const SizedBox(height: 16),
             Expanded(
               child: ListView.builder(
-                itemCount: 100,
+                itemCount: themeList.length,
                 itemBuilder: (context, index) {
-                  return const Column(
+                  return Column(
                     children: <Widget>[
-                      ThemeListCell(theme: null),
-                      SizedBox(height: 8),
+                      ThemeListCell(theme: themeList[index]),
+                      const SizedBox(height: 8),
                     ],
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add your onPressed function here
+          themeListViewModel.fetchThemes();
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.refresh),
       ),
     );
   }

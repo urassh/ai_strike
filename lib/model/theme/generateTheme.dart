@@ -1,5 +1,5 @@
-import '../../datamodel/theme.dart';
+import '../../datamodel/GameTheme.dart';
 
 abstract class GenerateTheme {
-  Future<Theme> generalTheme();
+  Future<GameTheme> generalTheme();
 }
