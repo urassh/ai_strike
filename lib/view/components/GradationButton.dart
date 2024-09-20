@@ -28,7 +28,7 @@ class GradationButton extends StatelessWidget {
           Text(
             text,
             style: const TextStyle(
-              fontSize: 18,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),

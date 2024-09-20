@@ -1,4 +1,5 @@
 import 'package:ai_strike/datamodel/Description.dart';
+import 'package:ai_strike/view/components/GradationButton.dart';
 import 'package:flutter/material.dart';
 
 import '../components/AppScaffold.dart';
@@ -46,7 +47,13 @@ class ExplainView extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 50),
+              const SizedBox(height: 48),
+
+              GradationButton(text: "Result", height: 80, onPressed: () {
+                Navigator.pop(context);
+              }),
+
+              const SizedBox(height: 64),
             ],
           ),
         ),
