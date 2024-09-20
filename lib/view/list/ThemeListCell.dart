@@ -7,16 +7,22 @@ abstract class ThemeListCellDelegate {
   void onRightSwipe();
 }
 
-class ThemeListCell extends StatelessWidget {
+class ThemeListCell extends StatefulWidget {
   final GameTheme theme;
   final ThemeListCellDelegate delegate;
 
-  ThemeListCell({
+  const ThemeListCell({
     super.key,
     required this.theme,
-    required this.delegate
+    required this.delegate,
   });
 
+  @override
+  _ThemeListCellState createState() => _ThemeListCellState();
+}
+
+
+class _ThemeListCellState extends State<ThemeListCell> {
   final TextStyle _titleStyle = const TextStyle(
     color: Colors.black87,
     fontSize: 18,
@@ -28,15 +34,14 @@ class ThemeListCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key(theme.id!),
+      key: Key(widget.theme.id!),
       direction: DismissDirection.horizontal,
       confirmDismiss: (direction) async {
         if (direction == DismissDirection.startToEnd) {
-          delegate.onRightSwipe();
+          widget.delegate.onRightSwipe();
         } else if (direction == DismissDirection.endToStart) {
-          delegate.onLeftSwipe();
+          widget.delegate.onLeftSwipe();
         }
-        // アイテムを消さないために、常にfalseを返す
         return false;
       },
       child: Container(
@@ -66,14 +71,14 @@ class ThemeListCell extends StatelessWidget {
         ),
         child: ListTile(
           title: Text(
-            theme.title,
+            widget.theme.title,
             style: _titleStyle,
           ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                formatDate.format(theme.date),
+                formatDate.format(widget.theme.date),
                 style: const TextStyle(
                   color: Colors.black54,
                   fontSize: 14,
@@ -82,7 +87,7 @@ class ThemeListCell extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                theme.contents,
+                widget.theme.contents,
                 style: const TextStyle(
                   color: Colors.black54,
                   fontSize: 14,
