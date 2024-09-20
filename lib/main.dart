@@ -5,8 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
-  const ProviderScope(
-    child: MyApp(),
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
   );
 }
 
