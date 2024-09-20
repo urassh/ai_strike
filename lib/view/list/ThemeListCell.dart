@@ -39,24 +39,6 @@ class ThemeListCell extends StatelessWidget {
         // アイテムを消さないために、常にfalseを返す
         return false;
       },
-      background: Container(
-        color: Colors.green, // 右スワイプ時の背景
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: const Icon(
-          Icons.check,
-          color: Colors.white,
-        ),
-      ),
-      secondaryBackground: Container(
-        color: Colors.red, // 左スワイプ時の背景
-        alignment: Alignment.centerRight,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: const Icon(
-          Icons.delete,
-          color: Colors.white,
-        ),
-      ),
       child: Container(
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
