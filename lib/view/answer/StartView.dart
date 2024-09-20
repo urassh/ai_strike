@@ -4,6 +4,7 @@ import 'package:ai_strike/view/components/GradationCard.dart';
 import 'package:flutter/material.dart';
 
 import '../util/AppStyle.dart';
+import 'DrawView.dart';
 
 class StartView extends StatelessWidget {
   final GameTheme theme;
@@ -60,7 +61,10 @@ class StartView extends StatelessWidget {
                 child: _EnhancedCircleButton(
                   text: "Start",
                   onPressed: () {
-
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => DrawView(theme: theme)),
+                    );
                   },
                 ),
               ),

@@ -20,6 +20,7 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
     });
 
     return AppScaffold(
+      showBackButton: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
         child: themeList.isEmpty
