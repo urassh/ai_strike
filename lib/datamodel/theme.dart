@@ -1,16 +1,32 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 
-final class Theme {
-  final String id;
-  final DateTime date;
-  final String title;
-  final String contents;
+part 'generated/theme.freezed.dart';
+part 'generated/theme.g.dart';
 
-  Theme({
-    required this.title,
-    required this.contents,
+@freezed
+class Theme with _$Theme {
+  const Theme._();
+
+  const factory Theme({
     String? id,
+    required DateTime date,
+    required String title,
+    required String contents,
+  }) = _Theme;
+
+  factory Theme.create({
     DateTime? date,
-  })  : id = id ?? const Uuid().v4(),
-        date = date ?? DateTime.now();
+    required String title,
+    required String contents,
+  }) {
+    return Theme(
+      id: const Uuid().v4(),
+      date: date ?? DateTime.now(),
+      title: title,
+      contents: contents,
+    );
+  }
+
+  factory Theme.fromJson(Map<String, dynamic> json) => _$ThemeFromJson(json);
 }
