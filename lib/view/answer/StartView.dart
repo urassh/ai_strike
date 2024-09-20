@@ -1,4 +1,5 @@
 import 'package:ai_strike/datamodel/GameTheme.dart';
+import 'package:ai_strike/view/components/AppScaffold.dart';
 import 'package:ai_strike/view/components/GradationCard.dart';
 import 'package:flutter/material.dart';
 
@@ -11,24 +12,8 @@ class StartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("AI Strike!!", style: TextStyle(fontWeight: FontWeight.w600)),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            // Handle back button action here
-          },
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1.0),
-          child: Container(
-            color: Colors.grey.withOpacity(0.5),
-            height: 1.0,
-          ),
-        ),
-      ),
-      body: SingleChildScrollView( // スクロール可能にする
+    return AppScaffold(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
           child: Column(
@@ -58,7 +43,7 @@ class StartView extends StatelessWidget {
                             theme.title,
                             style: AppStyle.title,
                           ),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 4),
                           Text(
                             theme.contents,
                             style: AppStyle.body,
