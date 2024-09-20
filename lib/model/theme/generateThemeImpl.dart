@@ -36,6 +36,6 @@ final class GenerateThemeImpl implements GenerateTheme {
       throw Exception('コンテンツ生成に失敗しました');
     }
 
-    return Theme(title: response.text ?? 'デフォルトのお題', contents: '');
+    return Theme.create(title: response.text ?? 'デフォルトのお題', contents: '');
   }
 }
