@@ -2,6 +2,7 @@ import 'package:ai_strike/datamodel/GameTheme.dart';
 import 'package:ai_strike/view/components/AppScaffold.dart';
 import 'package:ai_strike/view/components/ThemeCard.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../components/GradationCard.dart';
 import '../util/AppStyle.dart';
@@ -45,6 +46,25 @@ class DrawView extends StatelessWidget {
                 'Draw it',
                 style: AppStyle.title,
               ),
+
+              Container(
+                height: 400,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  gradient: AppStyle.gradation,
+                ),
+
+                child: Container(
+                  margin: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 50),
             ],
           ),
         ),

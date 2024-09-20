@@ -2,18 +2,14 @@ import 'package:flutter/material.dart';
 
 class AppStyle {
   static TextStyle get title {
-    return const TextStyle(
-        fontSize: 28,
-        fontWeight: FontWeight.bold,
-        shadows: [
-          BoxShadow(
-            color: Colors.black12,
-            offset: Offset(0, 4),
-            blurRadius: 4.0,
-            spreadRadius: 1.0,
-          ),
-        ]
-    );
+    return const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, shadows: [
+      BoxShadow(
+        color: Colors.black12,
+        offset: Offset(0, 4),
+        blurRadius: 4.0,
+        spreadRadius: 1.0,
+      ),
+    ]);
   }
 
   static TextStyle get subTitle {

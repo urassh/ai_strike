@@ -32,7 +32,8 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
                     'Select a Theme',
                     style: AppStyle.title,
                   ),
-                  Text("You can challenge right swipe!!", style: AppStyle.subTitle),
+                  Text("You can challenge right swipe!!",
+                      style: AppStyle.subTitle),
                   const SizedBox(height: 16),
                   Expanded(
                     child: ListView.builder(
@@ -40,7 +41,8 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
                       itemBuilder: (context, index) {
                         return Column(
                           children: <Widget>[
-                            ThemeListCell(theme: themeList[index], delegate: this),
+                            ThemeListCell(
+                                theme: themeList[index], delegate: this),
                             const SizedBox(height: 8),
                           ],
                         );
@@ -48,7 +50,7 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
                     ),
                   ),
                 ],
-        ),
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -71,5 +73,4 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
       MaterialPageRoute(builder: (context) => StartView(theme: theme)),
     );
   }
-
 }

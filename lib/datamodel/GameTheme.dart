@@ -28,5 +28,6 @@ class GameTheme with _$GameTheme {
     );
   }
 
-  factory GameTheme.fromJson(Map<String, dynamic> json) => _$GameThemeFromJson(json);
+  factory GameTheme.fromJson(Map<String, dynamic> json) =>
+      _$GameThemeFromJson(json);
 }

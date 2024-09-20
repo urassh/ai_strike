@@ -22,30 +22,28 @@ class StartView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const Center(
-                child: Text("90s", style: TextStyle(fontSize: 40, fontWeight: FontWeight.w600)),
+                child: Text("90s",
+                    style:
+                        TextStyle(fontSize: 40, fontWeight: FontWeight.w600)),
               ),
               Text(
                 'Theme',
                 style: AppStyle.title,
               ),
-
               const SizedBox(height: 8),
-
               Center(
                 child: FractionallySizedBox(
-                  widthFactor: 1.0,
-                  child: ThemeCard(theme: theme)
-                ),
+                    widthFactor: 1.0, child: ThemeCard(theme: theme)),
               ),
               const SizedBox(height: 120),
-
               Center(
                 child: _EnhancedCircleButton(
                   text: "Start",
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => DrawView(theme: theme)),
+                      MaterialPageRoute(
+                          builder: (context) => DrawView(theme: theme)),
                     );
                   },
                 ),
@@ -62,7 +60,8 @@ class _EnhancedCircleButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const _EnhancedCircleButton({super.key, required this.text, required this.onPressed});
+  const _EnhancedCircleButton(
+      {super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +69,8 @@ class _EnhancedCircleButton extends StatelessWidget {
       width: 160,
       height: 160,
       decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: AppStyle.gradation,
+        shape: BoxShape.circle,
+        gradient: AppStyle.gradation,
       ),
       padding: const EdgeInsets.all(4),
       child: ElevatedButton(
