@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import '../util/AppStyle.dart';
 import 'DrawView.dart';
+import 'ResultView.dart';
 
 class StartView extends StatelessWidget {
   final GameTheme theme;
@@ -45,7 +46,10 @@ class StartView extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ExplainView(description: Description(title: theme.title, contents: theme.contents))),
+                          builder: (context) => ResultView(
+                              0, theme, Description(title: theme.title, contents: theme.contents),
+                          ),
+                      ),
                     );
                   },
                 ),
