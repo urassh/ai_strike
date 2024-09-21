@@ -1,13 +1,13 @@
+import 'package:ai_strike/datamodel/Answer.dart';
 import 'package:flutter/material.dart';
 
-import '../../datamodel/GameTheme.dart';
 import '../components/GradationContainer.dart';
 import '../util/AppStyle.dart';
 
 class AnswerCard extends StatelessWidget {
-  final GameTheme theme;
+  final Answer answer;
 
-  const AnswerCard({super.key, required this.theme});
+  const AnswerCard({super.key, required this.answer});
 
   @override
   Widget build(BuildContext context) {
@@ -31,20 +31,20 @@ class AnswerCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const Row(
+                  Row(
                     children: [
                       Text(
-                        'urassh',
-                        style: TextStyle(
+                        answer.name,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Text(
-                        "41pt",
-                        style: TextStyle(
+                        answer.score.toString(),
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -54,7 +54,7 @@ class AnswerCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'This is the answer to the question.',
+                    answer.description.contents,
                     style: AppStyle.subTitle.copyWith(color: Colors.white).copyWith(fontSize: 10),
                   ),
                 ],

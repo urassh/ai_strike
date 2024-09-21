@@ -1,5 +1,4 @@
 import 'package:ai_strike/view/components/AppScaffold.dart';
-import 'package:ai_strike/view/components/GradationCard.dart';
 import 'package:ai_strike/view/components/ThemeCard.dart';
 import 'package:ai_strike/view/show/AnswerCard.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../datamodel/GameTheme.dart';
 import '../util/AppStyle.dart';
+import 'ShowViewModel.dart';
 
 class ShowView extends ConsumerWidget {
   final GameTheme theme;
@@ -15,6 +15,13 @@ class ShowView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(showViewModelProvider);
+    final viewmodel = ref.read(showViewModelProvider.notifier);
+
+    Future.delayed(Duration.zero, () {
+      viewmodel.fetchAnswers(theme);
+    });
+
     return AppScaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -47,13 +54,13 @@ class ShowView extends ConsumerWidget {
               height: 400, // Set the height for the horizontal list
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 10,
+                itemCount: state.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: SizedBox(
                       width: 300, // Set a fixed width for each AnswerCard
-                      child: AnswerCard(theme: theme),
+                      child: AnswerCard(answer: state[index]),
                     ),
                   );
                 },
