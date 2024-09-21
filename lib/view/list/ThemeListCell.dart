@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:ai_strike/datamodel/GameTheme.dart';
 import 'package:ai_strike/view/components/GradationCard.dart';
 import 'package:ai_strike/view/util/DateFormatter.dart';

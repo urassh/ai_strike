@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../components/AppScaffold.dart';
 import '../components/GradationButton.dart';
-import '../components/GradationContainer.dart';
 import '../components/ThemeCard.dart';
 import '../util/AppStyle.dart';
 
@@ -14,7 +13,7 @@ class ResultView extends StatelessWidget {
   final GameTheme theme;
   final Description description;
 
-  const ResultView(this.score, this.theme, this.description, {super.key});
+  const ResultView({super.key, required this.score, required this.theme, required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +65,13 @@ class ResultView extends StatelessWidget {
                 'name',
                 style: AppStyle.title,
               ),
+
+              const SizedBox(height: 64),
+
+              GradationButton(text: "Top", height: 80, onPressed: () {
+                Navigator.popUntil(context, (route) => route.isFirst);
+              }),
+
               const SizedBox(height: 64),
             ],
           ),

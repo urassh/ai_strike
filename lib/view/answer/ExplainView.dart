@@ -1,4 +1,5 @@
 import 'package:ai_strike/datamodel/Description.dart';
+import 'package:ai_strike/datamodel/GameTheme.dart';
 import 'package:ai_strike/view/components/GradationButton.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,7 @@ import '../components/AppScaffold.dart';
 import '../components/GradationContainer.dart';
 import '../components/ThemeCard.dart';
 import '../util/AppStyle.dart';
+import 'ResultView.dart';
 
 class ExplainView extends StatelessWidget {
   final Description description;
@@ -50,7 +52,16 @@ class ExplainView extends StatelessWidget {
               const SizedBox(height: 48),
 
               GradationButton(text: "Result", height: 80, onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ResultView(
+                          score: 0,
+                          theme: GameTheme.create(title: "Gemini", contents: "Twins"),
+                          description: description
+                      )
+                  ),
+                );
               }),
 
               const SizedBox(height: 64),

@@ -1,7 +1,6 @@
 import 'package:ai_strike/datamodel/CardDelegate.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../datamodel/GameTheme.dart';
 import '../util/AppStyle.dart';
 import 'GradationCard.dart';
 
