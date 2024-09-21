@@ -46,9 +46,7 @@ class StartView extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ResultView(
-                              0, theme, Description(title: theme.title, contents: theme.contents),
-                          ),
+                          builder: (context) => ExplainView(description: Description(title: theme.title, contents: theme.contents))
                       ),
                     );
                   },

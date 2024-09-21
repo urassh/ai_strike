@@ -14,7 +14,7 @@ class ResultView extends StatelessWidget {
   final GameTheme theme;
   final Description description;
 
-  const ResultView(this.score, this.theme, this.description, {super.key});
+  const ResultView({super.key, required this.score, required this.theme, required this.description});
 
   @override
   Widget build(BuildContext context) {
