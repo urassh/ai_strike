@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/AppScaffold.dart';
-import '../components/GradationContainer.dart';
 import '../components/ThemeCard.dart';
 import '../util/AppStyle.dart';
 import 'AnswerViewModel.dart';

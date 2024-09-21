@@ -2,6 +2,7 @@ import 'package:ai_strike/datamodel/GameTheme.dart';
 import 'package:ai_strike/view/components/AppScaffold.dart';
 import 'package:flutter/material.dart';
 import '../answer/StartView.dart';
+import '../show/ShowView.dart';
 import '../util/AppStyle.dart';
 import 'ListViewModel.dart';
 import 'ThemeListCell.dart';
@@ -63,7 +64,10 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
 
   @override
   void onLeftSwipe(BuildContext context, GameTheme theme) {
-    print("Left!");
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ShowView(theme: theme)),
+    );
   }
 
   @override
