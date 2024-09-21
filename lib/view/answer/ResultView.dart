@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../components/AppScaffold.dart';
 import '../components/GradationButton.dart';
-import '../components/GradationContainer.dart';
 import '../components/ThemeCard.dart';
 import '../util/AppStyle.dart';
 
@@ -66,7 +65,12 @@ class ResultView extends StatelessWidget {
                 'name',
                 style: AppStyle.title,
               ),
+
               const SizedBox(height: 64),
+
+              GradationButton(text: "Top", height: 80, onPressed: () {
+                Navigator.popUntil(context, (route) => route.isFirst);
+              }),
             ],
           ),
         ),
