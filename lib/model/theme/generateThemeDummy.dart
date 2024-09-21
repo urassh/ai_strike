@@ -5,6 +5,6 @@ import 'generateTheme.dart';
 class GenerateThemeDummy implements GenerateTheme {
   @override
   Future<Theme> generalTheme() {
-    return Future.value(const Theme(title: 'Dummy Theme', contents: 'Dummy Contents'));
+    return Future.value(Theme(title: 'Dummy Theme', contents: 'Dummy Contents'));
   }
 }
