@@ -1,11 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 
+import 'CardDelegate.dart';
+
 part 'generated/GameTheme.freezed.dart';
 part 'generated/GameTheme.g.dart';
 
 @freezed
-class GameTheme with _$GameTheme {
+class GameTheme with _$GameTheme implements CardDelegate {
   const GameTheme._();
 
   const factory GameTheme({
@@ -28,5 +30,6 @@ class GameTheme with _$GameTheme {
     );
   }
 
-  factory GameTheme.fromJson(Map<String, dynamic> json) => _$GameThemeFromJson(json);
+  factory GameTheme.fromJson(Map<String, dynamic> json) =>
+      _$GameThemeFromJson(json);
 }

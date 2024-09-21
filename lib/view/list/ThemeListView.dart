@@ -1,4 +1,5 @@
 import 'package:ai_strike/datamodel/GameTheme.dart';
+import 'package:ai_strike/view/components/AppScaffold.dart';
 import 'package:flutter/material.dart';
 import '../answer/StartView.dart';
 import '../util/AppStyle.dart';
@@ -18,45 +19,38 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
       themeListViewModel.fetchThemes();
     });
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("AI Strike!!", style: TextStyle(fontWeight: FontWeight.w600)),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1.0),
-          child: Container(
-            color: Colors.grey.withOpacity(0.5),
-            height: 1.0,
-          ),
-        ),
-      ),
+    return AppScaffold(
+      showBackButton: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
         child: themeList.isEmpty
             ? const Center(child: CircularProgressIndicator())
             : Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'Select a Theme',
-              style: AppStyle.title,
-            ),
-            Text("You can challenge right swipe!!", style: AppStyle.subTitle),
-            const SizedBox(height: 16),
-            Expanded(
-              child: ListView.builder(
-                itemCount: themeList.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: <Widget>[
-                      ThemeListCell(theme: themeList[index], delegate: this),
-                      const SizedBox(height: 8),
-                    ],
-                  );
-                },
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Select a Theme',
+                    style: AppStyle.title,
+                  ),
+                  Text("You can challenge right swipe!!",
+                      style: AppStyle.subTitle),
+                  const SizedBox(height: 16),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: themeList.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: <Widget>[
+                            ThemeListCell(
+                                theme: themeList[index], delegate: this),
+                            const SizedBox(height: 8),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -79,5 +73,4 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
       MaterialPageRoute(builder: (context) => StartView(theme: theme)),
     );
   }
-
 }

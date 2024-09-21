@@ -1,8 +1,14 @@
+import 'package:ai_strike/datamodel/Description.dart';
 import 'package:ai_strike/datamodel/GameTheme.dart';
+import 'package:ai_strike/view/answer/ExplainView.dart';
+import 'package:ai_strike/view/components/AppScaffold.dart';
 import 'package:ai_strike/view/components/GradationCard.dart';
+import 'package:ai_strike/view/components/ThemeCard.dart';
 import 'package:flutter/material.dart';
 
 import '../util/AppStyle.dart';
+import 'DrawView.dart';
+import 'ResultView.dart';
 
 class StartView extends StatelessWidget {
   final GameTheme theme;
@@ -11,71 +17,40 @@ class StartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("AI Strike!!", style: TextStyle(fontWeight: FontWeight.w600)),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            // Handle back button action here
-          },
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1.0),
-          child: Container(
-            color: Colors.grey.withOpacity(0.5),
-            height: 1.0,
-          ),
-        ),
-      ),
-      body: SingleChildScrollView( // スクロール可能にする
+    return AppScaffold(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const Center(
-                child: Text("90s", style: TextStyle(fontSize: 40, fontWeight: FontWeight.w600)),
+                child: Text("90s",
+                    style:
+                        TextStyle(fontSize: 40, fontWeight: FontWeight.w600)),
               ),
               Text(
                 'Theme',
                 style: AppStyle.title,
               ),
-
               const SizedBox(height: 8),
-
               Center(
                 child: FractionallySizedBox(
-                  widthFactor: 1.0,
-                  child: GradationCard(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Text(
-                            theme.title,
-                            style: AppStyle.title,
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            theme.contents,
-                            style: AppStyle.body,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                    widthFactor: 1.0, child: ThemeCard(delegate: theme)),
               ),
               const SizedBox(height: 120),
-
               Center(
                 child: _EnhancedCircleButton(
                   text: "Start",
                   onPressed: () {
-
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ResultView(
+                              0, theme, Description(title: theme.title, contents: theme.contents),
+                          ),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -91,7 +66,8 @@ class _EnhancedCircleButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const _EnhancedCircleButton({super.key, required this.text, required this.onPressed});
+  const _EnhancedCircleButton(
+      {super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +75,8 @@ class _EnhancedCircleButton extends StatelessWidget {
       width: 160,
       height: 160,
       decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: AppStyle.gradation,
+        shape: BoxShape.circle,
+        gradient: AppStyle.gradation,
       ),
       padding: const EdgeInsets.all(4),
       child: ElevatedButton(
