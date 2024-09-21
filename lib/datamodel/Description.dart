@@ -6,7 +6,7 @@ part 'generated/Description.freezed.dart';
 part 'generated/Description.g.dart';
 
 @freezed
-class Description with _$Description implements CardDelegate{
+class Description with _$Description implements CardDelegate {
   const Description._();
 
   const factory Description({
@@ -23,6 +23,14 @@ class Description with _$Description implements CardDelegate{
       id: const Uuid().v4(),
       title: title,
       contents: contents,
+    );
+  }
+
+  factory Description.createEmpty() {
+    return Description(
+      id: const Uuid().v4(),
+      title: '',
+      contents: '',
     );
   }
 
