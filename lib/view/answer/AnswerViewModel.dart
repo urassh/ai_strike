@@ -85,7 +85,8 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
       contents="「なるほど、つまり一連の手順をすべて試した結果、期待していた成果が得られず、様々なアプローチを繰り返しても、どうしても目的の通りに処理が進まないという状況が続いていたわけですね。それで、最終的には何をどう調整しても、やっぱり生成自体が完了しなかったという理解でよろしいでしょうか？」";
     }
 
-    final description = Description(title: "Gemini", contents: contents);
+    final description = Description.create(title: "Gemini", contents: contents);
+
     final newAnswer = state.answer.copyWith(description: description);
     state = state.copyWith(answer: newAnswer);
   }
