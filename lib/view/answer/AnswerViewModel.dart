@@ -41,4 +41,9 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
   void setTime(int time) {
     state = AnswerState(answer: state.answer, time: time);
   }
+
+  init() {
+    state = AnswerState.createEmpty();
+    _timer = null;
+  }
 }

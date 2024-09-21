@@ -1,4 +1,3 @@
-import 'package:ai_strike/datamodel/Description.dart';
 import 'package:ai_strike/datamodel/GameTheme.dart';
 import 'package:ai_strike/view/answer/AnswerViewModel.dart';
 import 'package:ai_strike/view/answer/DrawView.dart';

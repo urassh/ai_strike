@@ -1,23 +1,23 @@
-import 'package:ai_strike/datamodel/Description.dart';
-import 'package:ai_strike/datamodel/GameTheme.dart';
 import 'package:ai_strike/view/components/GradationContainer.dart';
 import 'package:ai_strike/view/components/GradationText.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/AppScaffold.dart';
 import '../components/GradationButton.dart';
 import '../components/ThemeCard.dart';
 import '../util/AppStyle.dart';
+import 'AnswerViewModel.dart';
 
-class ResultView extends StatelessWidget {
-  final int score;
-  final GameTheme theme;
-  final Description description;
-
-  const ResultView({super.key, required this.score, required this.theme, required this.description});
+class ResultView extends ConsumerWidget {
+  const ResultView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(answerProvider);
+    final answerViewModel = ref.read(answerProvider.notifier);
+
+
     return AppScaffold(
       showBackButton: false,
       body: SingleChildScrollView(
@@ -26,7 +26,7 @@ class ResultView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              GradationText(text: "Score: $score", height: 80),
+              GradationText(text: "Score: ${state.answer.score}", height: 80),
 
               const SizedBox(height: 32),
 
@@ -40,7 +40,7 @@ class ResultView extends StatelessWidget {
               Center(
                 child: FractionallySizedBox(
                     widthFactor: 1.0,
-                    child: ThemeCard(delegate: theme)
+                    child: ThemeCard(delegate: state.answer.theme)
                 ),
               ),
 
@@ -56,7 +56,7 @@ class ResultView extends StatelessWidget {
               Center(
                 child: FractionallySizedBox(
                     widthFactor: 1.0,
-                    child: ThemeCard(delegate: description)
+                    child: ThemeCard(delegate: state.answer.description)
                 ),
               ),
 
@@ -87,6 +87,7 @@ class ResultView extends StatelessWidget {
               const SizedBox(height: 64),
 
               GradationButton(text: "Top", height: 80, onPressed: () {
+                answerViewModel.init();
                 Navigator.popUntil(context, (route) => route.isFirst);
               }),
 
