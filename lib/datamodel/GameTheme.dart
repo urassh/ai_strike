@@ -30,6 +30,15 @@ class GameTheme with _$GameTheme implements CardDelegate {
     );
   }
 
+  factory GameTheme.createEmpty() {
+    return GameTheme(
+      id: const Uuid().v4(),
+      date: DateTime.now(),
+      title: '',
+      contents: '',
+    );
+  }
+
   factory GameTheme.fromJson(Map<String, dynamic> json) =>
       _$GameThemeFromJson(json);
 }

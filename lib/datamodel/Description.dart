@@ -26,6 +26,14 @@ class Description with _$Description implements CardDelegate {
     );
   }
 
+  factory Description.createEmpty() {
+    return Description(
+      id: const Uuid().v4(),
+      title: '',
+      contents: '',
+    );
+  }
+
   factory Description.fromJson(Map<String, dynamic> json) =>
       _$DescriptionFromJson(json);
 }
