@@ -1,4 +1,4 @@
-import '../../datamodel/theme.dart';
+import '../../datamodel/GameTheme.dart';
 import 'generateTheme.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -25,7 +25,7 @@ final class GenerateThemeImpl implements GenerateTheme {
   }
 
   @override
-  Future<Theme> generalTheme() async {
+  Future<GameTheme> generalTheme() async {
     final content = [
       Content.text('ユニークな絵のお題を提案してください。'),
     ];
@@ -36,6 +36,6 @@ final class GenerateThemeImpl implements GenerateTheme {
       throw Exception('コンテンツ生成に失敗しました');
     }
 
-    return Theme(title: response.text ?? 'デフォルトのお題', contents: '');
+    return GameTheme.create(title: response.text ?? 'デフォルトのお題', contents: '');
   }
 }
