@@ -66,20 +66,23 @@ class _DrawViewState extends ConsumerState<DrawView> {
               ),
               const SizedBox(height: 10),
 
-              // 描画エリア
-              GestureDetector(
-                onPanUpdate: (details) {
-                  setState(() {
-                    points.add(details.localPosition);
-                  });
-                },
-                onPanEnd: (details) {
-                  points.add(null);
-                },
-                child: GradationContainer(
-                  height: 400,
-                  child: CustomPaint(
-                    painter: PaintCanvas(points),
+
+              RepaintBoundary(
+                key: answerViewModel.globalKey,
+                child: GestureDetector(
+                  onPanUpdate: (details) {
+                    setState(() {
+                      points.add(details.localPosition);
+                    });
+                  },
+                  onPanEnd: (details) {
+                    points.add(null);
+                  },
+                  child: GradationContainer(
+                    height: 400,
+                    child: CustomPaint(
+                      painter: PaintCanvas(points),
+                    ),
                   ),
                 ),
               ),
