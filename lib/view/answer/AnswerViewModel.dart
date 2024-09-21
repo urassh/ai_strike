@@ -4,6 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../datamodel/Answer.dart';
 import 'AnswerState.dart';
 
+final answerProvider = StateNotifierProvider<AnswerViewModel, AnswerState>((ref) {
+  return AnswerViewModel();
+});
+
 class AnswerViewModel extends StateNotifier<AnswerState> {
   AnswerViewModel() : super(AnswerState.createEmpty());
   Timer? _timer;
@@ -20,6 +24,11 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
 
   void stopTimer() {
     _timer?.cancel();
+  }
+
+  void onStoppedTimerHandler(void Function() callback) {
+    _timer?.cancel();
+    callback();
   }
 
   void setAnswer(Answer answer) {
