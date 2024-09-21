@@ -5,13 +5,14 @@ import 'dart:ui';
 
 import 'package:ai_strike/datamodel/Description.dart';
 import 'package:ai_strike/model/explain/explainFromImage.dart';
-import 'package:ai_strike/model/explain/explainFromImageDummy.dart';
 import 'package:ai_strike/model/external/Gemini.dart';
+import 'package:ai_strike/model/score/CalculateScore.dart';
 import 'package:ai_strike/view/util/Uint8ListExt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../datamodel/Answer.dart';
+import '../../model/score/CalculateScoreDummy.dart';
 import 'AnswerState.dart';
 
 abstract class TimerDelegate {
@@ -26,6 +27,7 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
   AnswerViewModel() : super(AnswerState.createEmpty());
   Timer? _timer;
   final ExplainFromImage _explainFromImage = Gemini();
+  final CalculateScore _calculateScore = CalculateScoreDummy();
   final GlobalKey globalKey = GlobalKey();
 
   void startTimer(TimerDelegate delegate, BuildContext context, WidgetRef ref) {
@@ -55,6 +57,11 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
 
   void setImage(Uint8List image) {
     final newAnswer = state.answer.copyWith(image: image);
+    state = state.copyWith(answer: newAnswer);
+  }
+
+  void setName(String name) {
+    final newAnswer = state.answer.copyWith(name: name);
     state = state.copyWith(answer: newAnswer);
   }
 
@@ -89,6 +96,14 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
       print(e);
       rethrow;
     }
+  }
+
+  Future<void> fetchScore() async {
+    if (0 < state.answer.score) return;
+
+    final score = await _calculateScore.calculateScore(state.answer.theme, state.answer.description);
+    final newAnswer = state.answer.copyWith(score: score);
+    state = state.copyWith(answer: newAnswer);
   }
 
   init() {
