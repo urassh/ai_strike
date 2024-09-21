@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:ai_strike/datamodel/Description.dart';
+import 'package:ai_strike/model/answer/addAnswer.dart';
 import 'package:ai_strike/model/explain/explainFromImage.dart';
 import 'package:ai_strike/model/external/Gemini.dart';
 import 'package:ai_strike/model/score/CalculateScore.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../datamodel/Answer.dart';
+import '../../model/external/Firebase.dart';
 import '../../model/score/CalculateScoreDummy.dart';
 import 'AnswerState.dart';
 
@@ -28,6 +30,7 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
   Timer? _timer;
   final ExplainFromImage _explainFromImage = Gemini();
   final CalculateScore _calculateScore = CalculateScoreDummy();
+  final AddAnswer _addAnswer = Firebase();
   final GlobalKey globalKey = GlobalKey();
 
   void startTimer(TimerDelegate delegate, BuildContext context, WidgetRef ref) {
@@ -63,6 +66,10 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
   void setName(String name) {
     final newAnswer = state.answer.copyWith(name: name);
     state = state.copyWith(answer: newAnswer);
+  }
+
+  void uploadAnswer() {
+    _addAnswer.addAnswer(state.answer);
   }
 
   Future<void> fetchDescription() async {

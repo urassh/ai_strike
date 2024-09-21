@@ -96,6 +96,7 @@ class ResultView extends ConsumerWidget {
                     const SizedBox(height: 64),
 
                     GradationButton(text: "Top", height: 80, onPressed: () {
+                      answerViewModel.uploadAnswer();
                       answerViewModel.init();
                       Navigator.popUntil(context, (route) => route.isFirst);
                     }),
