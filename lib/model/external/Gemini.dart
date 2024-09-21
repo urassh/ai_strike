@@ -1,27 +1,45 @@
 import 'dart:io';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
-import 'explainFromImage.dart';
+import '../../datamodel/GameTheme.dart';
+import '../explain/explainFromImage.dart';
+import '../theme/ThemeInterface.dart';
 
-class ExplainFromImageImpl implements ExplainFromImage {
+final class Gemini implements GenerateTheme, ExplainFromImage {
   late final GenerativeModel model;
 
-  ExplainFromImageImpl() {
+  Gemini() {
     final apiKey = dotenv.env['API_KEY'] ?? '';
-    final model = dotenv.env['MULTI_MODEL'] ?? '';
+    final model = dotenv.env['MODEL'] ?? '';
 
     if (apiKey.isEmpty) {
       throw Exception('API_KEYが.envファイルに見つかりませんでした');
     }
 
     if (model.isEmpty) {
-      throw Exception('MULTI_MODELが.envファイルに見つかりませんでした');
+      throw Exception('MODELが.envファイルに見つかりませんでした');
     }
 
     this.model = GenerativeModel(
       model: model,
       apiKey: apiKey,
     );
+  }
+
+  @override
+  Future<GameTheme> generateTheme() async {
+    final content = [
+      Content.text('ユニークな絵のお題を提案してください。'),
+    ];
+
+    final response = await model.generateContent(content);
+
+    if (response.text == null) {
+      throw Exception('コンテンツ生成に失敗しました');
+    }
+
+    return GameTheme.create(title: response.text ?? 'デフォルトのお題', contents: '');
   }
 
   @override

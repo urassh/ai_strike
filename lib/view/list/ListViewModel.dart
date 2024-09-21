@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../datamodel/GameTheme.dart';
+import '../../model/theme/ThemeDummy.dart';
+import '../../model/theme/ThemeInterface.dart';
 
 final themeListProvider =
     StateNotifierProvider<ListViewModel, List<GameTheme>>((ref) {
@@ -10,19 +12,19 @@ final themeListProvider =
 class ListViewModel extends StateNotifier<List<GameTheme>> {
   ListViewModel() : super([]);
 
+  final FetchThemes themeInterface = ThemeDummy();
+  final AddTheme addThemeInterface = ThemeDummy();
+  final GenerateTheme generateThemeInterface = ThemeDummy();
+
   Future<void> fetchThemes() async {
-    await Future.delayed(const Duration(seconds: 2));
-    state = [
-      GameTheme.create(
-          title: 'Theme 1',
-          contents:
-              'Description Description DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription'),
-      GameTheme.create(title: 'Theme 2', contents: 'Description 2'),
-      GameTheme.create(title: 'Theme 3', contents: 'Description 3'),
-    ];
+    final themes = await themeInterface.fetchThemes();
+    state = themes;
   }
 
-  void addTheme(GameTheme theme) {
-    state = [...state, theme];
+  Future<void> addTheme() async {
+    final generatedTheme = await generateThemeInterface.generateTheme();
+
+    addThemeInterface.addTheme(generatedTheme);
+    state = [...state, generatedTheme];
   }
 }
