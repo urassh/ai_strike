@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "412688756515",
+    "project_id": "aistrike-6c242",
+    "storage_bucket": "aistrike-6c242.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412688756515:android:293dffe00ecb82a8f7a696",
+        "android_client_info": {
+          "package_name": "com.urassh.aistrike"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYe4S3weuWpxPCa92A7d1lJIhk2_lQp2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
