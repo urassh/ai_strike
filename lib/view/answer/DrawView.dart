@@ -91,17 +91,6 @@ class _DrawViewState extends ConsumerState<DrawView> {
       ),
     );
   }
-
-  @override
-  void onStopTimer(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(answerProvider);
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ExplainView(description: state.answer.description),
-      ),
-    );
-  }
 }
 
 // PaintCanvasクラスは描画のロジックを担当
