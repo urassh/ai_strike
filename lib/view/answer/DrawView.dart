@@ -93,7 +93,6 @@ class _DrawViewState extends ConsumerState<DrawView> {
   }
 }
 
-// PaintCanvasクラスは描画のロジックを担当
 class PaintCanvas extends CustomPainter {
   final List<Offset?> points;
 

@@ -54,9 +54,9 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          themeListViewModel.fetchThemes();
+          themeListViewModel.addTheme();
         },
-        child: const Icon(Icons.refresh),
+        child: const Icon(Icons.add),
       ),
     );
   }
