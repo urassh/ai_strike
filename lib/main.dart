@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'model/theme/generateThemeImpl.dart';
+import 'model/theme/theme_image_app.dart';
 
 void main() async {
   // .envファイルを読み込む

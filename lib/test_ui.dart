@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'model/theme/generateThemeImpl.dart'; // パスを確認
+import 'model/theme/theme_image_app.dart'; // パスを確認
 import 'dart:io';
 import 'package:image_picker/image_picker.dart'; // 画像選択用パッケージ
 

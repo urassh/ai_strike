@@ -1,68 +1,96 @@
+// generateThemeImpl.dart
 import '../../datamodel/theme.dart';
-import 'generateTheme.dart';
+// import 'generateThemeImpl.dart'; // 自己インポートを削除
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:io';
 
-final class GenerateThemeImpl implements GenerateTheme {
+/// APIキーが見つからない場合のカスタム例外。
+class ApiKeyNotFoundException implements Exception {
+  final String message;
+  ApiKeyNotFoundException(this.message);
+
   @override
-  Future<Theme> generalTheme() async {
-    // .envファイルからAPIキーを取得
+  String toString() => 'ApiKeyNotFoundException: $message';
+}
+
+/// GenerateThemeインターフェースの実装クラス。
+class GenerateThemeImpl implements GenerateTheme {
+  final String themeModel;
+  final String visionModel;
+
+  /// コンストラクタでモデル名を指定可能。デフォルトは'gemini-pro'と'gemini-pro-vision'。
+  GenerateThemeImpl({
+    this.themeModel = 'gemini-pro',
+    this.visionModel = 'gemini-pro-vision',
+  });
+
+  /// 環境変数からAPIキーを取得します。
+  ///
+  /// APIキーが存在しない場合は[ApiKeyNotFoundException]をスローします。
+  String _getApiKey() {
     final apiKey = dotenv.env['API_KEY'];
     if (apiKey == null) {
-      throw Exception('API_KEYが.envファイルに見つかりませんでした');
+      throw ApiKeyNotFoundException('API_KEYが.envファイルに見つかりませんでした');
     }
+    return apiKey;
+  }
 
-    // Geminiモデルを初期化 (テキスト生成)
+  /// ユニークなお題を生成します。
+  ///
+  /// [Theme]オブジェクトを返します。
+  ///
+  /// 例外:
+  /// - [ApiKeyNotFoundException]: APIキーが見つからない場合。
+  /// - [Exception]: コンテンツ生成に失敗した場合。
+  @override
+  Future<Theme> generalTheme() async {
+    final apiKey = _getApiKey();
+
     final model = GenerativeModel(
-      model: 'gemini-pro',
+      model: themeModel,
       apiKey: apiKey,
     );
 
-    // 絵のお題を生成するためのプロンプト
     final content = [
       Content.text('ユニークな絵のお題を提案してください。'),
     ];
 
-    // テキスト生成APIの呼び出し
     final response = await model.generateContent(contents: content);
-    if (response == null || response.text == null) {
+    if (response.text == null) {
       throw Exception('コンテンツ生成に失敗しました');
     }
 
-    // Themeオブジェクトを作成して返します
-    return Theme(title: response.text ?? 'デフォルトのお題');
+    return Theme(title: response.text!);
   }
 
-  // 画像を説明するテキスト生成関数
+  /// 選択された画像の内容を説明します。
+  ///
+  /// 説明文を返します。
+  ///
+  /// 例外:
+  /// - [ApiKeyNotFoundException]: APIキーが見つからない場合。
+  /// - [Exception]: 画像の説明生成に失敗した場合。
   Future<String> describeImage(File imageFile) async {
-    final apiKey = dotenv.env['API_KEY'];
-    if (apiKey == null) {
-      throw Exception('API_KEYが.envファイルに見つかりませんでした');
-    }
+    final apiKey = _getApiKey();
 
-    // Geminiモデルを初期化 (画像とテキストのマルチモーダル入力)
     final model = GenerativeModel(
-      model: 'gemini-pro-vision',  // マルチモーダルモデルを使用
+      model: visionModel,
       apiKey: apiKey,
     );
 
-    // 画像データを読み込む
     final imageBytes = await imageFile.readAsBytes();
     final imgPart = DataPart('image/jpeg', imageBytes);
-
-    // テキスト部分と画像部分をプロンプトとして渡す
     final prompt = TextPart('この画像の内容を詳しく説明してください。');
     final content = [
       Content.multi([prompt, imgPart])
     ];
 
-    // マルチモーダルAPIの呼び出し
     final response = await model.generateContent(contents: content);
-    if (response == null || response.text == null) {
+    if (response.text == null) {
       throw Exception('画像の説明生成に失敗しました');
     }
 
-    return response.text ?? '説明なし';
+    return response.text!;
   }
 }
