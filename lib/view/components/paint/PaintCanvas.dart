@@ -7,9 +7,7 @@ import 'ColorSelectionWidget.dart';
 import 'UndoButtonBar.dart';
 
 class PaintCanvas extends StatelessWidget {
-  final ColorPath colorPath;
-
-  const PaintCanvas(this.colorPath, {super.key});
+  const PaintCanvas({super.key});
 
   @override
   Widget build(BuildContext context) {

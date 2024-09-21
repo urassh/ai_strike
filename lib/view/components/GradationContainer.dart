@@ -4,8 +4,9 @@ import '../util/AppStyle.dart';
 class GradationContainer extends StatelessWidget {
   final double height;
   final double radius;
+  final Widget? child;
 
-  const GradationContainer({super.key, required this.height, this.radius = 8});
+  const GradationContainer({super.key, required this.height, this.radius = 8, this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class GradationContainer extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(radius),
         ),
+        child: child,
       ),
     );
   }
