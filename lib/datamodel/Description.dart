@@ -34,6 +34,8 @@ class Description with _$Description implements CardDelegate {
     );
   }
 
+  bool get isEmpty => title.isEmpty && contents.isEmpty;
+
   factory Description.fromJson(Map<String, dynamic> json) =>
       _$DescriptionFromJson(json);
 }

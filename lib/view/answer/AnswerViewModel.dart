@@ -1,5 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:ai_strike/datamodel/Description.dart';
+import 'package:ai_strike/model/explain/explainFromImage.dart';
+import 'package:ai_strike/model/explain/explainFromImageDummy.dart';
+import 'package:ai_strike/view/util/Uint8ListExt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../datamodel/Answer.dart';
@@ -16,6 +21,7 @@ final answerProvider = StateNotifierProvider<AnswerViewModel, AnswerState>((ref)
 class AnswerViewModel extends StateNotifier<AnswerState> {
   AnswerViewModel() : super(AnswerState.createEmpty());
   Timer? _timer;
+  final ExplainFromImage _explainFromImage = ExplainFromImageDummy();
 
   void startTimer(TimerDelegate delegate, BuildContext context, WidgetRef ref) {
     if (_timer != null) return;
@@ -40,6 +46,22 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
 
   void setTime(int time) {
     state = AnswerState(answer: state.answer, time: time);
+  }
+
+  Future<void> fetchDescription() async {
+    File imageFile;
+    String contents = "";
+
+    try {
+      imageFile = await state.answer.image.saveToFile("${state.answer.theme.id}.jpg");
+      contents = await _explainFromImage.explainFromImage(imageFile);
+    } catch (e) {
+      print(e);
+    }
+
+    final description = Description(title: "Gemini", contents: contents);
+    final newAnswer = state.answer.copyWith(description: description);
+    state = state.copyWith(answer: newAnswer);
   }
 
   init() {
