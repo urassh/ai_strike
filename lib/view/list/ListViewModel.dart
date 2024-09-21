@@ -2,6 +2,7 @@ import 'package:ai_strike/model/external/Gemini.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../datamodel/GameTheme.dart';
+import '../../model/external/Firebase.dart';
 import '../../model/theme/ThemeDummy.dart';
 import '../../model/theme/ThemeInterface.dart';
 
@@ -13,8 +14,8 @@ final themeListProvider =
 class ListViewModel extends StateNotifier<List<GameTheme>> {
   ListViewModel() : super([]);
 
-  final FetchThemes themeInterface = ThemeDummy();
-  final AddTheme addThemeInterface = ThemeDummy();
+  final FetchThemes themeInterface = Firebase();
+  final AddTheme addThemeInterface = Firebase();
   final GenerateTheme generateThemeInterface = Gemini();
 
   Future<void> fetchThemes() async {
