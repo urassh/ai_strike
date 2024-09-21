@@ -1,3 +1,4 @@
+import 'package:ai_strike/model/external/Gemini.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../datamodel/GameTheme.dart';
@@ -14,7 +15,7 @@ class ListViewModel extends StateNotifier<List<GameTheme>> {
 
   final FetchThemes themeInterface = ThemeDummy();
   final AddTheme addThemeInterface = ThemeDummy();
-  final GenerateTheme generateThemeInterface = ThemeDummy();
+  final GenerateTheme generateThemeInterface = Gemini();
 
   Future<void> fetchThemes() async {
     final themes = await themeInterface.fetchThemes();

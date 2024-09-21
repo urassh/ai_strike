@@ -30,7 +30,10 @@ final class Gemini implements GenerateTheme, ExplainFromImage {
   @override
   Future<GameTheme> generateTheme() async {
     final content = [
-      Content.text('ユニークな絵のお題を提案してください。'),
+      Content.text(""
+          "ユニークな絵のお題を1つ提案してください。"
+          "例: 『宇宙の中で、猫が宇宙船を操縦している』"
+      ),
     ];
 
     final response = await model.generateContent(content);
@@ -39,7 +42,7 @@ final class Gemini implements GenerateTheme, ExplainFromImage {
       throw Exception('コンテンツ生成に失敗しました');
     }
 
-    return GameTheme.create(title: response.text ?? 'デフォルトのお題', contents: '');
+    return GameTheme.create(title: 'Geminiからのお題', contents: response.text ?? "「なるほど、つまり一連の手順をすべて試した結果、期待していた成果が得られず、様々なアプローチを繰り返しても、どうしても目的の通りに処理が進まないという状況が続いていたわけですね。それで、最終的には何をどう調整しても、やっぱり生成自体が完了しなかったという理解でよろしいでしょうか？」");
   }
 
   @override
