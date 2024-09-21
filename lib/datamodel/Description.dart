@@ -6,7 +6,7 @@ part 'generated/Description.freezed.dart';
 part 'generated/Description.g.dart';
 
 @freezed
-class Description with _$Description implements CardDelegate{
+class Description with _$Description implements CardDelegate {
   const Description._();
 
   const factory Description({
