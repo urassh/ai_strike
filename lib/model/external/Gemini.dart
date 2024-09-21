@@ -42,7 +42,7 @@ final class Gemini implements GenerateTheme, ExplainFromImage {
       throw Exception('コンテンツ生成に失敗しました');
     }
 
-    return GameTheme.create(title: 'Geminiからのお題', contents: response.text ?? "「なるほど、つまり一連の手順をすべて試した結果、期待していた成果が得られず、様々なアプローチを繰り返しても、どうしても目的の通りに処理が進まないという状況が続いていたわけですね。それで、最終的には何をどう調整しても、やっぱり生成自体が完了しなかったという理解でよろしいでしょうか？」");
+    return GameTheme.create(title: 'Geminiからの挑戦状', contents: response.text ?? "「なるほど、つまり一連の手順をすべて試した結果、期待していた成果が得られず、様々なアプローチを繰り返しても、どうしても目的の通りに処理が進まないという状況が続いていたわけですね。それで、最終的には何をどう調整しても、やっぱり生成自体が完了しなかったという理解でよろしいでしょうか？」");
   }
 
   @override
