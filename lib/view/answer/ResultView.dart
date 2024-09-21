@@ -1,5 +1,6 @@
 import 'package:ai_strike/datamodel/Description.dart';
 import 'package:ai_strike/datamodel/GameTheme.dart';
+import 'package:ai_strike/view/components/GradationContainer.dart';
 import 'package:ai_strike/view/components/GradationText.dart';
 import 'package:flutter/material.dart';
 
@@ -64,6 +65,23 @@ class ResultView extends StatelessWidget {
               Text(
                 'name',
                 style: AppStyle.title,
+              ),
+
+              const Stack(
+                alignment: Alignment.center,
+                children: [
+                  GradationContainer(height: 60, radius: 8),
+
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Enter your name',
+                      ),
+                    ),
+                  ),
+                ],
               ),
 
               const SizedBox(height: 64),
