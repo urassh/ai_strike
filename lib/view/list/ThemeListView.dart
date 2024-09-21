@@ -1,4 +1,7 @@
+import 'package:ai_strike/datamodel/GameTheme.dart';
 import 'package:flutter/material.dart';
+import '../answer/StartView.dart';
+import '../util/AppStyle.dart';
 import 'ListViewModel.dart';
 import 'ThemeListCell.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,22 +36,11 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
             : Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text(
+            Text(
               'Select a Theme',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                  shadows: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      offset: Offset(0, 4),
-                      blurRadius: 4.0,
-                      spreadRadius: 1.0,
-                    ),
-                  ]
-              ),
+              style: AppStyle.title,
             ),
-            const Text("You can challenge right swipe!!", style: TextStyle(fontSize: 16, color: Colors.grey)),
+            Text("You can challenge right swipe!!", style: AppStyle.subTitle),
             const SizedBox(height: 16),
             Expanded(
               child: ListView.builder(
@@ -76,13 +68,16 @@ class ThemeListView extends ConsumerWidget implements ThemeListCellDelegate {
   }
 
   @override
-  void onLeftSwipe() {
+  void onLeftSwipe(BuildContext context, GameTheme theme) {
     print("Left!");
   }
 
   @override
-  void onRightSwipe() {
-    print("Right!");
+  void onRightSwipe(BuildContext context, GameTheme theme) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => StartView(theme: theme)),
+    );
   }
 
 }

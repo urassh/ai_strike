@@ -1,10 +1,11 @@
 import 'package:ai_strike/datamodel/GameTheme.dart';
+import 'package:ai_strike/view/components/GradationCard.dart';
 import 'package:ai_strike/view/util/DateFormatter.dart';
 import 'package:flutter/material.dart';
 
 abstract class ThemeListCellDelegate {
-  void onLeftSwipe();
-  void onRightSwipe();
+  void onLeftSwipe(BuildContext context, GameTheme theme);
+  void onRightSwipe(BuildContext context, GameTheme theme);
 }
 
 class ThemeListCell extends StatefulWidget {
@@ -20,7 +21,6 @@ class ThemeListCell extends StatefulWidget {
   @override
   _ThemeListCellState createState() => _ThemeListCellState();
 }
-
 
 class _ThemeListCellState extends State<ThemeListCell> {
   final TextStyle _titleStyle = const TextStyle(
@@ -38,37 +38,13 @@ class _ThemeListCellState extends State<ThemeListCell> {
       direction: DismissDirection.horizontal,
       confirmDismiss: (direction) async {
         if (direction == DismissDirection.startToEnd) {
-          widget.delegate.onRightSwipe();
+          widget.delegate.onRightSwipe(context, widget.theme);
         } else if (direction == DismissDirection.endToStart) {
-          widget.delegate.onLeftSwipe();
+          widget.delegate.onLeftSwipe(context, widget.theme);
         }
         return false;
       },
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [
-              Color(0xFFA9C9FF),
-              Color(0xFFFFBBEC),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-          borderRadius: BorderRadius.circular(12.0),
-          border: Border.all(
-            color: Colors.white.withAlpha(100),
-            width: 4.0,
-          ),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black26,
-              offset: Offset(2, 2),
-              blurRadius: 5.0,
-              spreadRadius: 0.5,
-            ),
-          ],
-        ),
+      child: GradationCard(
         child: ListTile(
           title: Text(
             widget.theme.title,
