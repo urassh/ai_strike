@@ -47,14 +47,19 @@ final class Gemini implements GenerateTheme, ExplainFromImage {
 
   @override
   Future<String> explainFromImage(File imageFile) async {
+    final multiModel = GenerativeModel(
+      model: dotenv.env['MULTI_MODEL'] ?? '',
+      apiKey:  dotenv.env['API_KEY'] ?? '',
+    );
+
     final imagePart = await imageFile.readAsPart();
-    final prompt = TextPart('この画像の内容を詳しく説明してください。');
+    final prompt = TextPart('この画像の内容を日本語で詳しく説明してください。');
 
     final content = [
       Content.multi([prompt, imagePart])
     ];
 
-    final response = await model.generateContent(content);
+    final response = await multiModel.generateContent(content);
 
     if (response.text == null) {
       throw Exception('画像の説明生成に失敗しました');

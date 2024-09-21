@@ -17,7 +17,6 @@ class ResultView extends ConsumerWidget {
     final state = ref.watch(answerProvider);
     final answerViewModel = ref.read(answerProvider.notifier);
 
-
     return AppScaffold(
       showBackButton: false,
       body: SingleChildScrollView(

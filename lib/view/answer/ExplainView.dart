@@ -27,7 +27,7 @@ class ExplainView extends ConsumerWidget {
     return AppScaffold(
       showBackButton: false,
       body: SingleChildScrollView(
-        child: state.answer.description.isEmpty
+        child: state.answer.description.contents.isEmpty
             ? const Center(child: CircularProgressIndicator())
             : Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),

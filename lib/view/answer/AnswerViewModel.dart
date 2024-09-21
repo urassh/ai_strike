@@ -6,6 +6,7 @@ import 'dart:ui';
 import 'package:ai_strike/datamodel/Description.dart';
 import 'package:ai_strike/model/explain/explainFromImage.dart';
 import 'package:ai_strike/model/explain/explainFromImageDummy.dart';
+import 'package:ai_strike/model/external/Gemini.dart';
 import 'package:ai_strike/view/util/Uint8ListExt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
@@ -24,7 +25,7 @@ final answerProvider = StateNotifierProvider<AnswerViewModel, AnswerState>((ref)
 class AnswerViewModel extends StateNotifier<AnswerState> {
   AnswerViewModel() : super(AnswerState.createEmpty());
   Timer? _timer;
-  final ExplainFromImage _explainFromImage = ExplainFromImageDummy();
+  final ExplainFromImage _explainFromImage = Gemini();
   final GlobalKey globalKey = GlobalKey();
 
   void startTimer(TimerDelegate delegate, BuildContext context, WidgetRef ref) {
@@ -58,14 +59,16 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
   }
 
   Future<void> fetchDescription() async {
+    if (state.answer.description.contents.isNotEmpty) return;
+
     File imageFile;
     String contents = "";
 
     try {
-      imageFile = await state.answer.image.saveToFile("${state.answer.theme.id}.jpg");
+      imageFile = await state.answer.image.saveToFile("${state.answer.theme.id}.png");
       contents = await _explainFromImage.explainFromImage(imageFile);
     } catch (e) {
-      print(e);
+      contents="「なるほど、つまり一連の手順をすべて試した結果、期待していた成果が得られず、様々なアプローチを繰り返しても、どうしても目的の通りに処理が進まないという状況が続いていたわけですね。それで、最終的には何をどう調整しても、やっぱり生成自体が完了しなかったという理解でよろしいでしょうか？」";
     }
 
     final description = Description(title: "Gemini", contents: contents);
