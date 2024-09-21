@@ -1,14 +1,11 @@
 import 'package:ai_strike/datamodel/Description.dart';
 import 'package:ai_strike/datamodel/GameTheme.dart';
-import 'package:ai_strike/view/answer/ExplainView.dart';
 import 'package:ai_strike/view/components/AppScaffold.dart';
-import 'package:ai_strike/view/components/GradationCard.dart';
 import 'package:ai_strike/view/components/ThemeCard.dart';
 import 'package:flutter/material.dart';
 
 import '../util/AppStyle.dart';
-import 'DrawView.dart';
-import 'ResultView.dart';
+import 'ExplainView.dart';
 
 class StartView extends StatelessWidget {
   final GameTheme theme;
@@ -65,7 +62,7 @@ class _EnhancedCircleButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const _EnhancedCircleButton(
-      {super.key, required this.text, required this.onPressed});
+      {required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

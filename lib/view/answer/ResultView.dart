@@ -71,6 +71,8 @@ class ResultView extends StatelessWidget {
               GradationButton(text: "Top", height: 80, onPressed: () {
                 Navigator.popUntil(context, (route) => route.isFirst);
               }),
+
+              const SizedBox(height: 64),
             ],
           ),
         ),
