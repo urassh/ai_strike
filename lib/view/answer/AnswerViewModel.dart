@@ -5,7 +5,6 @@ import 'dart:ui';
 
 import 'package:ai_strike/datamodel/Description.dart';
 import 'package:ai_strike/model/explain/explainFromImage.dart';
-import 'package:ai_strike/model/explain/explainFromImageDummy.dart';
 import 'package:ai_strike/model/external/Gemini.dart';
 import 'package:ai_strike/view/util/Uint8ListExt.dart';
 import 'package:flutter/cupertino.dart';
