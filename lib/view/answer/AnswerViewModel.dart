@@ -52,6 +52,11 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
     state = AnswerState(answer: state.answer, time: time);
   }
 
+  void setImage(Uint8List image) {
+    final newAnswer = state.answer.copyWith(image: image);
+    state = state.copyWith(answer: newAnswer);
+  }
+
   Future<void> fetchDescription() async {
     File imageFile;
     String contents = "";

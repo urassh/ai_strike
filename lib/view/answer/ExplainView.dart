@@ -41,7 +41,10 @@ class ExplainView extends ConsumerWidget {
 
                     const SizedBox(height: 8),
 
-                    const GradationContainer(height: 400),
+                    SizedBox(
+                        height: 400,
+                        child: Image.memory(state.answer.image)
+                    ),
 
                     const SizedBox(height: 32),
 

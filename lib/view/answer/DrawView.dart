@@ -15,8 +15,13 @@ class DrawView extends ConsumerStatefulWidget implements TimerDelegate {
   _DrawViewState createState() => _DrawViewState();
 
   @override
-  void onStopTimer(BuildContext context, WidgetRef ref) {
+  void onStopTimer(BuildContext context, WidgetRef ref) async {
     final state = ref.watch(answerProvider);
+    final answerViewModel = ref.read(answerProvider.notifier);
+    final capturedImage = await answerViewModel.capturePng();
+
+    answerViewModel.setImage(capturedImage);
+
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -28,7 +33,7 @@ class DrawView extends ConsumerStatefulWidget implements TimerDelegate {
 }
 
 class _DrawViewState extends ConsumerState<DrawView> {
-  List<Offset?> points = []; // 描画するポイントのリスト
+  List<Offset?> points = [];
 
   @override
   Widget build(BuildContext context) {
