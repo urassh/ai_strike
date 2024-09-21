@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/GradationContainer.dart';
-import '../components/paint/PaintCanvas.dart'; // ペイントロジックを定義するファイル
 import '../util/AppStyle.dart';
 import 'AnswerViewModel.dart';
 import 'ExplainView.dart';
