@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../datamodel/GameTheme.dart';
 import '../../model/external/Firebase.dart';
-import '../../model/theme/ThemeDummy.dart';
 import '../../model/theme/ThemeInterface.dart';
 
 final themeListProvider =
