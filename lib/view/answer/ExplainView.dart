@@ -55,11 +55,7 @@ class ExplainView extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ResultView(
-                          score: 0,
-                          theme: GameTheme.create(title: "Gemini", contents: "Twins"),
-                          description: description
-                      )
+                      builder: (context) => const ResultView()
                   ),
                 );
               }),

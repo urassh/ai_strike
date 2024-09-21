@@ -1,19 +1,28 @@
-import 'package:ai_strike/datamodel/Description.dart';
 import 'package:ai_strike/datamodel/GameTheme.dart';
+import 'package:ai_strike/view/answer/AnswerViewModel.dart';
+import 'package:ai_strike/view/answer/DrawView.dart';
 import 'package:ai_strike/view/components/AppScaffold.dart';
 import 'package:ai_strike/view/components/ThemeCard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../util/AppStyle.dart';
-import 'ExplainView.dart';
 
-class StartView extends StatelessWidget {
+class StartView extends ConsumerWidget {
   final GameTheme theme;
 
   const StartView({super.key, required this.theme});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(answerProvider);
+    final answerViewModel = ref.read(answerProvider.notifier);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final newAnswer = state.answer.copyWith(theme: theme);
+      answerViewModel.setAnswer(newAnswer);
+    });
+
     return AppScaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -21,10 +30,10 @@ class StartView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Center(
-                child: Text("90s",
+              Center(
+                child: Text("${state.time}s",
                     style:
-                        TextStyle(fontSize: 40, fontWeight: FontWeight.w600)),
+                        const TextStyle(fontSize: 40, fontWeight: FontWeight.w600)),
               ),
               Text(
                 'Theme',
@@ -43,7 +52,7 @@ class StartView extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ExplainView(description: Description(title: theme.title, contents: theme.contents))
+                          builder: (context) => const DrawView()
                       ),
                     );
                   },
