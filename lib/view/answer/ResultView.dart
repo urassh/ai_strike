@@ -72,18 +72,22 @@ class ResultView extends ConsumerWidget {
                       style: AppStyle.title,
                     ),
 
-                    const Stack(
+                    Stack(
                       alignment: Alignment.center,
                       children: [
-                        GradationContainer(height: 60, radius: 8),
+                        const GradationContainer(height: 60, radius: 8),
 
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
                           child: TextField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Enter your name',
                             ),
+                            autofocus: true,
+                            onChanged: (text) {
+                              answerViewModel.setName(text);
+                            },
                           ),
                         ),
                       ],

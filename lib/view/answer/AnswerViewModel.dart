@@ -60,6 +60,11 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
     state = state.copyWith(answer: newAnswer);
   }
 
+  void setName(String name) {
+    final newAnswer = state.answer.copyWith(name: name);
+    state = state.copyWith(answer: newAnswer);
+  }
+
   Future<void> fetchDescription() async {
     if (state.answer.description.contents.isNotEmpty) return;
 
