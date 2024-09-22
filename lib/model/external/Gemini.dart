@@ -30,7 +30,7 @@ final class Gemini implements GenerateTheme, ExplainFromImage {
   @override
   Future<GameTheme> generateTheme() async {
     final content = [
-      Content.text(""
+      Content.text(
           "ユニークな絵のお題を1つ提案してください。"
           "例: 『宇宙の中で、猫が宇宙船を操縦している』"
       ),
