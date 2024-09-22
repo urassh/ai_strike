@@ -8,6 +8,7 @@ import 'package:ai_strike/model/answer/addAnswer.dart';
 import 'package:ai_strike/model/explain/explainFromImage.dart';
 import 'package:ai_strike/model/external/Gemini.dart';
 import 'package:ai_strike/model/score/CalculateScore.dart';
+import 'package:ai_strike/model/score/CalculateScoreImpl.dart';
 import 'package:ai_strike/view/util/Uint8ListExt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
@@ -29,7 +30,7 @@ class AnswerViewModel extends StateNotifier<AnswerState> {
   AnswerViewModel() : super(AnswerState.createEmpty());
   Timer? _timer;
   final ExplainFromImage _explainFromImage = Gemini();
-  final CalculateScore _calculateScore = CalculateScoreDummy();
+  final CalculateScore _calculateScore = CalculateScoreImpl();
   final AddAnswer _addAnswer = Firebase();
   final GlobalKey globalKey = GlobalKey();
 
