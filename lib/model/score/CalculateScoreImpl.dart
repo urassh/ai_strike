@@ -42,7 +42,7 @@ class CalculateScoreImpl implements CalculateScore {
 
           // スコアが数値であることを確認
           if (score is num) {
-            return (score * 100).toInt();
+            return (score * 10).toInt();
           } else {
             throw Exception('Invalid similarity_score format.');
           }
